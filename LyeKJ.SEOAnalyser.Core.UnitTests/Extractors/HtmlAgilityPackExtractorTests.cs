@@ -11,24 +11,30 @@ using Xunit;
 
 namespace LyeKJ.SEOAnalyser.Core.UnitTests.Extractors
 {
-    public class HtmlAgilityPackRawExtractorTests
+    public class HtmlAgilityPackExtractorTests
     {
-        private static readonly string HtmlFilePath = Path.Combine(LocalFileHelper.GetAssemblyDirectory<HtmlAgilityPackRawExtractorTests>(),
+        private static readonly Uri TestUrl = new Uri("http://example.com");
+        private static readonly string HtmlFilePath = Path.Combine(LocalFileHelper.GetAssemblyDirectory<HtmlAgilityPackExtractorTests>(),
                 "Resources/Example.html");
 
-        private readonly IHtmlExtractor extractor;
+        private readonly IHtmlExtractor webExtractor;
+        private readonly IHtmlExtractor rawExtractor;
 
-        public HtmlAgilityPackRawExtractorTests()
+        public HtmlAgilityPackExtractorTests()
         {
-            var html = File.ReadAllText(HtmlFilePath);
             var factory = new HtmlExtractorFactory();
-            extractor = factory.CreateRawExtractor(html);
+            webExtractor = factory.CreateWebExtractor(TestUrl);
+
+            var html = File.ReadAllText(HtmlFilePath);
+            rawExtractor = factory.CreateRawExtractor(html);
         }
 
-        [Fact]
-        public void ExtractText()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ExtractText(bool isHtml)
         {
-            var actualTexts = extractor.ExtractText();
+            var actualTexts = (isHtml ? webExtractor : rawExtractor).ExtractText();
 
             var expectedTexts = new List<string>
             {
@@ -41,10 +47,12 @@ namespace LyeKJ.SEOAnalyser.Core.UnitTests.Extractors
             actualTexts.Should().BeEquivalentTo(expectedTexts);
         }
 
-        [Fact]
-        public void ExtractLinks()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ExtractLinks(bool isHtml)
         {
-            var actualLinks = extractor.ExtractLinks();
+            var actualLinks = (isHtml ? webExtractor : rawExtractor).ExtractLinks();
 
             var expectedLinks = new List<string>
             {
@@ -54,10 +62,12 @@ namespace LyeKJ.SEOAnalyser.Core.UnitTests.Extractors
             actualLinks.Should().BeEquivalentTo(expectedLinks);
         }
 
-        [Fact]
-        public void ExtractMetaKeywords()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ExtractMetaKeywords(bool isHtml)
         {
-            var actualKeywords = extractor.ExtractMetaKeywords();
+            var actualKeywords = (isHtml ? webExtractor : rawExtractor).ExtractMetaKeywords();
 
             var expectedKeywords = new List<string>();
 

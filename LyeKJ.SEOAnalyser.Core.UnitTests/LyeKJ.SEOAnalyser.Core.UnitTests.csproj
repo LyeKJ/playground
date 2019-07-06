@@ -72,8 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extractors\HtmlAgilityPackRawExtractorTests.cs" />
-    <Compile Include="Extractors\HtmlAgilityPackWebExtractorTests.cs" />
+    <Compile Include="Extractors\HtmlAgilityPackExtractorTests.cs" />
     <Compile Include="TestHelpers\LocalFileHelper.cs" />
     <Compile Include="Tokenizers\TokenizerTests.cs" />
     <Compile Include="Utilities\UrlUtilityTests.cs" />
