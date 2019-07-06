@@ -6,5 +6,5 @@
 
 ## Steps:
 1. Clone this repo.
-2. Open **LyeKJ.SEOAnalyser.sln**. **Clean and rebuild** in Visual Studio.
+2. Open **LyeKJ.SEOAnalyser.sln**. **Clean and rebuild solution** in Visual Studio.
 3. Debug by clicking on F5 or publish to IIS server.
