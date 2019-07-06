@@ -1,0 +1,44 @@
+﻿@using LyeKJ.SEOAnalyser.Constants;
+@using LyeKJ.SEOAnalyser.ViewModels
+@model AnalysisForm
+<div>
+    <h3>Analysis</h3><hr />
+
+    @using (Html.BeginForm("SubmitAnalysis", "Home", FormMethod.Post))
+    {
+        @Html.RadioButtonFor(m => m.IsHtml, false, new { id = "radioUrl" })
+        @Html.Label("radioUrl", "Analyse by URL")
+
+        <br />
+
+        @Html.RadioButtonFor(m => m.IsHtml, true, new { id = "radioHtml" })
+        @Html.Label("radioHtml", "Analyse by HTML text")
+
+        <hr />
+        <div id="urlForm">
+            @Html.LabelFor(m => m.UriToBeAnalysed) <br />
+            @Html.TextBoxFor(m => m.UriToBeAnalysed) <br />
+            @Html.ValidationMessage(ValidationErrorConstants.UrlIsInvalid, new { @class = "text-danger" })
+            @Html.ValidationMessage(ValidationErrorConstants.InaccessibleWebsite, new { @class = "text-danger" })
+            <br />
+        </div>
+
+        <div id="htmlForm" style="display:none">
+            @Html.LabelFor(m => m.HtmlTextToBeAnalysed) <br />
+            @Html.TextAreaFor(m => m.HtmlTextToBeAnalysed) <br />
+            @Html.ValidationMessage(ValidationErrorConstants.HtmlTextIsRequired, new { @class = "text-danger" }) <br />
+        </div>
+
+        <div>
+            @Html.CheckBoxFor(m => m.IsExcludingStopWords, new { id = "checkBoxExcludingStopWords" })
+            @Html.Label("checkBoxExcludingStopWords", "Excluding stop words")
+            <br />
+        </div>
+
+        @Html.HiddenFor(m => m.IsHtml, new { id = "hiddenAnalysisType" })
+
+        <input type="submit" value="Submit for analysis" />
+    }
+
+    <br />
+</div>

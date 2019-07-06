@@ -1,31 +1,124 @@
-﻿@{
+﻿@using LyeKJ.SEOAnalyser.Constants;
+@using LyeKJ.SEOAnalyser.ViewModels;
+@model AnalysisResult
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div>
+    @Html.Partial("_AnalysisForm", new AnalysisForm())
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div>
+    <h3>Word Count</h3><hr />
+    @if (Model.WordCountMap.Any())
+    {
+        <table class="table table-bordered tablesorter-blue">
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var wordCount in Model.WordCountMap)
+                {
+                    <tr>
+                        <td>@wordCount.Key</td>
+                        <td>@wordCount.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert-danger">No words found.</div>
+    }
 </div>
+
+<div>
+    <h3>Keyword Count</h3><hr />
+    @if (Model.KeywordCountMap.Any())
+    {
+        <table class="table table-bordered tablesorter-blue">
+            <thead>
+                <tr>
+                    <th>Keyword</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var wordCount in Model.KeywordCountMap)
+                {
+                    <tr>
+                        <td>@wordCount.Key</td>
+                        <td>@wordCount.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert-danger">No keywords found.</div>
+    }
+</div>
+
+<div>
+    <h3>External Links</h3><hr />
+    @if (Model.Links.Any())
+    {
+        <h4>Number of external links : @Model.Links.Count </h4>
+
+        <table class="table table-bordered tablesorter-blue">
+            <thead>
+                <tr>
+                    <th>External Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var link in Model.Links)
+                {
+                    <tr>
+                        <td>@link</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert-danger">No external links found.</div>
+    }
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('.tablesorter-blue').tablesorter();
+
+            if ($('#radioUrl').is(':checked')) {
+                showUrlForm();
+            }
+
+            if ($('#radioHtml').is(':checked')) {
+                showHtmlForm();
+            }
+
+            $('#radioUrl').click(showUrlForm);
+
+            $('#radioHtml').click(showHtmlForm);
+        });
+
+        function showUrlForm() {
+            $('#urlForm').show();
+            $('#htmlForm').hide();
+        }
+
+        function showHtmlForm() {
+            $('#urlForm').hide();
+            $('#htmlForm').show();
+        }
+    </script>
+}

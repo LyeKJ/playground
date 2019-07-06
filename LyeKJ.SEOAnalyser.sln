@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyeKJ.SEOAnalyser", "LyeKJ.SEOAnalyser\LyeKJ.SEOAnalyser.csproj", "{ECED382F-5B63-4B8D-8093-EE33A54E474F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyeKJ.SEOAnalyser.Core", "LyeKJ.SEOAnalyser.Core\LyeKJ.SEOAnalyser.Core.csproj", "{2E5E2280-0A4D-4250-8CCF-EF39E9998A3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyeKJ.SEOAnalyser.Core.UnitTests", "LyeKJ.SEOAnalyser.Core.UnitTests\LyeKJ.SEOAnalyser.Core.UnitTests.csproj", "{F749C8FC-A53E-40BC-9566-14AF145BDFAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{ECED382F-5B63-4B8D-8093-EE33A54E474F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECED382F-5B63-4B8D-8093-EE33A54E474F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECED382F-5B63-4B8D-8093-EE33A54E474F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5E2280-0A4D-4250-8CCF-EF39E9998A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5E2280-0A4D-4250-8CCF-EF39E9998A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5E2280-0A4D-4250-8CCF-EF39E9998A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5E2280-0A4D-4250-8CCF-EF39E9998A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F749C8FC-A53E-40BC-9566-14AF145BDFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F749C8FC-A53E-40BC-9566-14AF145BDFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F749C8FC-A53E-40BC-9566-14AF145BDFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F749C8FC-A53E-40BC-9566-14AF145BDFAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
